@@ -24,8 +24,7 @@
 }
 
 .main-menu {
-    width: 50%;
-    
+    width: 500px;
 }
 
 .main-menu h2 {
@@ -53,7 +52,7 @@
     width: 100%;
 }
 
-.info-container input[type="text"] {
+.info-container input {
     height: 25px;
 }
 

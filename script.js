@@ -1,4 +1,8 @@
 const mainContainer = document.querySelector(".main-container");
+const outerContainer = document.querySelector(".outer-border");
+const mainMenu = document.querySelector(".main-menu");
+outerContainer.style.display = "none";
+
 
 const player = (name, marker) => {
     const playerName = name;
@@ -6,8 +10,25 @@ const player = (name, marker) => {
     return {playerName, playerMarker};
 };
 
-const player1 = player("Player 1", "X");
-const player2 = player("Player 2", "O");
+const mainMenuScreen = (() => {
+    player1Input = document.getElementById("p1");
+    player2Input = document.getElementById("p2");
+    setPlayerNames = document.getElementById("set-names");
+    setPlayerNames.addEventListener("click", () => {
+        player1.playerName = player1Input.value;
+        player2.playerName = player2Input.value;
+        console.log(`${player1Input.value}, ${player2Input.value}`);
+    });
+
+    startGameButton = document.getElementById("start-game");
+    startGameButton.addEventListener("click", () => {
+        mainMenu.style.display = "none";
+        outerContainer.style.display = "block";
+    });
+})();
+
+let player1 = player(player1Input.value, "X");
+let player2 = player(player2Input.value, "O");
 
 const gameBoard = (() => {
     const gridBoxes = Array.from(document.querySelectorAll(".grid-box"));
@@ -47,6 +68,7 @@ const gameBoard = (() => {
     let winner = "";
     
     const checkWinner = () => {
+        let gameOver = false;
         for (x = 0; x < winConditions.length; x++) {
             winCondiditon = winConditions[x];
             let spot1 = _gameBoardArray[winCondiditon[0]];
@@ -57,12 +79,14 @@ const gameBoard = (() => {
             }
             if (spot1 === spot2 && spot2 === spot3){
                 winner = `${currentPlayer} has won the game!`;
+                gameOver = true;
                 playAgain();
-            };
-        };
-        if (!_gameBoardArray.includes("")) {
-            winner = "It's a Tie!";
-            playAgain();
+            }
+            if (!_gameBoardArray.includes("") && !gameOver) {
+                winner = "It's a Tie!"
+                playAgain();
+                gameOver = true;
+            }; 
         };
     };
 
@@ -81,6 +105,7 @@ const gameBoard = (() => {
 
         const playAgainButton = document.createElement("button");
         playAgainButton.innerText = "Play Again?";
+        playAgainButton.classList.add = "prompt-button";
         playAgainButton.id = "play-again-button";
 
         promptContainer.append(playAgainPromp);
@@ -95,9 +120,9 @@ const gameBoard = (() => {
                     box.textContent = "";
                 });
             };
+            gameOver = false;
             mainContainer.removeChild(promptContainer);
         });
-        return {winnerText};
     };
 
 })();

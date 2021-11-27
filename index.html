@@ -9,6 +9,31 @@
     <body>
         <div class="main-container">
             <h1 id="title">Tic-Tac-Toe</h1>
+            <div class="main-menu">
+                <div class="options">
+                    <h2 id="main-menu">Main Menu</h2>
+                    <div class="player-container">
+                        <div>
+                            <form class="info-container">
+                                <div>Player 1 Information</div>
+                                <input placeholder="Name" type="text" id="p1">
+                                <p>Marker: X</p>
+                            </form>
+                        </div>
+                        <div>
+                            <form class="info-container">
+                                <div>Player 2 Information</div>
+                                <input placeholder="Name" type="text" id="p2">
+                                <p>Marker: O</p>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button id="set-names">Set Player Names</button>
+                        <button id="start-game">Start Game</button>
+                    </div> 
+                </div>
+            </div>
             <div class="outer-border">
                 <div class="game-board">
                     <div class="grid-box" id="0"></div>  
